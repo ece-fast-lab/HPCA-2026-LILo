@@ -9,10 +9,10 @@ docker exec baseline_${name} bash -ic "
     conda activate py310;
     cd llm;
     source ./tools/env_activate.sh inference;
+    pip install --upgrade transformers==4.49.0;
     cd /root/llm/inference;
-    bash ./run_llama.sh; # !run llama baseline
+    # bash ./run_llama.sh; # !run llama baseline
     bash ./run_ds.sh; # !run deepseek baseline
-    # python /root/results/extract_data.py # !Extract latency and move it under current folder
 "
 # Cleanup
 docker stop baseline_${name}

@@ -1,0 +1,56 @@
+--- modeling_deepseek.py	2025-12-03 21:03:47.996433027 -0600
++++ ds_proc.py	2025-12-03 21:05:35.835790171 -0600
+@@ -338,6 +338,7 @@
+ # Copied from transformers.models.llama.modeling_llama.apply_rotary_pos_emb
+ def apply_rotary_pos_emb(q, k, cos, sin, position_ids, unsqueeze_dim=1):
+     """Applies Rotary Position Embedding to the query and key tensors.
++
+     Args:
+         q (`torch.Tensor`): The query tensor.
+         k (`torch.Tensor`): The key tensor.
+@@ -463,6 +464,15 @@
+             raise NotImplementedError(
+                 f"insupportable TopK function for MoE gating: {self.topk_method}"
+             )
++        
++        ### Randomize topk_idx and topk_weight across all inputs in the batch
++        n_tokens = topk_idx.shape[0] # This is bsz * seq_len
++        # Generate a random permutation of the row indices (i.e., the tokens)
++        shuffled_token_indices = torch.randperm(n_tokens, device=topk_idx.device)
++
++        # Apply this same random permutation to the rows of both tensors
++        topk_idx = topk_idx[shuffled_token_indices]
++        topk_weight = topk_weight[shuffled_token_indices]
+ 
+         ### norm gate to sum 1
+         if self.top_k > 1 and self.norm_topk_prob:
+@@ -1230,9 +1240,11 @@
+     This model inherits from [`PreTrainedModel`]. Check the superclass documentation for the generic methods the
+     library implements for all its model (such as downloading or saving, resizing the input embeddings, pruning heads
+     etc.)
++
+     This model is also a PyTorch [torch.nn.Module](https://pytorch.org/docs/stable/nn.html#torch.nn.Module) subclass.
+     Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to general usage
+     and behavior.
++
+     Parameters:
+         config ([`DeepseekV3Config`]):
+             Model configuration class with all the parameters of the model. Initializing with a config file does not
+@@ -1331,6 +1343,7 @@
+ class DeepseekV3Model(DeepseekV3PreTrainedModel):
+     """
+     Transformer decoder consisting of *config.num_hidden_layers* layers. Each layer is a [`DeepseekV3DecoderLayer`]
++
+     Args:
+         config: DeepseekV3Config
+     """
+@@ -1629,7 +1642,8 @@
+             if isinstance(past_key_values, Cache):
+                 cache_length = past_key_values.get_seq_length()
+                 past_length = past_key_values.seen_tokens
+-                max_cache_length = past_key_values.get_max_length()
++                # max_cache_length = past_key_values.get_max_length()
++                max_cache_length = past_key_values.get_max_cache_shape()
+             else:
+                 cache_length = past_length = past_key_values[0][0].shape[2]
+                 max_cache_length = None
