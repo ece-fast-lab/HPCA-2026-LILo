@@ -1,4 +1,4 @@
-# LILO: Harnessing the On-chip Accelerators in Intel CPUs for Compressed LLM Inference Acceleration
+# LILo: Harnessing the On-chip Accelerators in Intel CPUs for Compressed LLM Inference Acceleration
 
 This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessing the On-chip Accelerators in Intel CPUs for Compressed LLM Inference Acceleration
 
@@ -32,11 +32,11 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
 
     &rarr; [Step1 - Baseline](./scripts/step_1_baseline/)
 
-2. Collecting latency results with inference + decompression 
+2. Collecting latency results for LILo (inference + decompression) w/o storage-offloading
 
     &rarr; [Step2 - Decompression](./scripts/step_2_decomp/)
 
-3. Collecting latency results with inference + storage offloading
+3. Characterizing storage-offloading overhead with Accelerate
     
     &rarr; [Step3 - Storage offloading](./scripts/step_3_storage_offloading/)
 
