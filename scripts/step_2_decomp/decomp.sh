@@ -32,7 +32,7 @@ docker run -dit --net host --privileged --name decomp_ds_${name} \
  -v ./:/root/mnt -v /storage3:/storage3 -v /storage2:/storage2 -v /storage:/storage \
  qirongx2/lilo:ds bash
 
-docker exec decomp_llama_${name} bash -ic "
+docker exec decomp_ds_${name} bash -ic "
     source /root/miniforge3/etc/profile.d/conda.sh;
     conda activate py310;
     cd llm;
