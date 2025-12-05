@@ -5,7 +5,7 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
 ## System Prerequisite
 **Hardware**
 - A server with an Intel 4th generation Xeon Scalable Processor equipped with at least one IAA (4 IAAs is preferred to reproduce performance).
-- Make sure `hardware prefetch`, `LLC prefetch` is turned on in BIOS.
+- Make sure `Hardware prefetch`, `LLC prefetch`, and `Adjacent Cache Prefetch` is turned on in BIOS.
 - Recommend to have at least 1.2TB stoarge space for storing all models' parameters. 
 
 **Software**
@@ -43,5 +43,5 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
 
 ## Estimated completion time
 - Setup: 1hr
-- Running experiments: 10 hr
+- Running experiments: 20hr
 

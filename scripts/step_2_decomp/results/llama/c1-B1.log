@@ -1,8 +1,0 @@
-
-[Verifying the recovered data]
-[Recovered data verified!]
---------------------
-Namespace(model_id='/storage2/qirongx2/Slim-Llama3.1-405B/', dtype='bfloat16', input_tokens='32', max_new_tokens=256, prompt="It is done, and submitted. You can play 'Survival of the Tastiest' on Android, and on the web. Playing on the web works, but you have to simulate multiple touch for table moving and that can be a bit confusing. There is a lot I'd like to talk about. I will go through every topic, insted of making the typical what went right/wrong list. Concept Working over the theme was probably one of the hardest tasks which I had to face. Originally, I had an idea of what kind of game I wanted to develop, gameplay wise - something with a lot of enemies/actors", streaming=False, image_url='https://images.cocodataset.org/val2017/000000039769.jpg', audio='example.flac', config_file=None, greedy=True, ipex=False, deployment_mode=True, torch_compile=False, backend='ipex', profile=False, benchmark=True, num_iter=4, num_warmup=2, batch_size=1, token_latency=True, cache_weight_for_large_batch=False, vision_text_model=False)
----- Prompt size: 128
-LLM RUNTIME INFO: running model geneartion...
-LLM RUNTIME ERROR: Running generation task failed. Quit.

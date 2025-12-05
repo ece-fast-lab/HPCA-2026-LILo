@@ -11,7 +11,7 @@ docker exec baseline_${name} bash -ic "
     source ./tools/env_activate.sh inference;
     pip install --upgrade transformers==4.49.0;
     cd /root/llm/inference;
-    # bash ./run_llama.sh; # !run llama baseline
+    bash ./run_llama.sh; # !run llama baseline
     bash ./run_ds.sh; # !run deepseek baseline
 "
 # Cleanup

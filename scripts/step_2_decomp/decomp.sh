@@ -15,7 +15,6 @@ docker exec decomp_llama_${name} bash -ic "
     conda activate py310;
     cd llm;
     source ./tools/env_activate.sh inference;
-    pip install --upgrade transformers==4.49.0;
     cd /root/thread_pool/;
     bash ./build.sh; # rebuild decompression module
     cd /root/llm/inference;
