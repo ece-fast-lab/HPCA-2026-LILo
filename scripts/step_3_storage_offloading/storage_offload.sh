@@ -12,7 +12,7 @@ docker exec storage_offload_${name} bash -ic "
     conda activate py310;
     cd llm;
     source ./tools/env_activate.sh inference;
-    
+    ./run_offload.sh;    
 "
 # Cleanup
 docker stop storage_offload_${name}
