@@ -220,7 +220,7 @@ def extract_latency(root_folder):
     return latencies
 
 def sort_key(fname):
-    m = re.match(r"c(\d+)-b(\d+)\.log", fname)
+    m = re.match(r"c(\d+)-B(\d+)\.log", fname)
     c = int(m.group(1))
     b = int(m.group(2))
     return (c,b)
