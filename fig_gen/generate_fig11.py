@@ -127,13 +127,13 @@ def get_ds_latencies(
     memory_footprint = weight_footprint + (2 * 2 * bs * (Lin+Lout) * d_c * n_layer \
                         + 2 * bs * (Lin + Lout) * d_hidden) / 1024 / 1024 / 1024
     
-    if category == 1:
+    if bs == 1:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*8/256/0.54)
-    elif category == 2:
+    elif bs == 4:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*30/256/0.82)
-    elif category == 3:
+    elif bs == 16:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*102/256/0.94)
-    elif category == 4:
+    elif bs == 64:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*223/256/0.97)
     else:
         print("Error: choose a valid category (between 1,2,3,4).")
@@ -180,13 +180,13 @@ def get_ds_tput(
     memory_footprint = weight_footprint + (2 * 2 * bs * (Lin+Lout) * d_c * n_layer \
                         + 2 * bs * (Lin + Lout) * d_hidden) / 1024 / 1024 / 1024
     
-    if category == 1:
+    if bs == 1:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*8/256/0.54)
-    elif category == 2:
+    elif bs == 4:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*30/256/0.82)
-    elif category == 3:
+    elif bs == 16:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*102/256/0.94)
-    elif category == 4:
+    elif bs == 64:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*223/256/0.97)
     else:
         print("Error: choose a valid category (between 1,2,3,4).")

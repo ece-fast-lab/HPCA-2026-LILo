@@ -38,7 +38,7 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
 
 3. Characterizing storage-offloading overhead with Accelerate
     
-    &rarr; [Step3 - Storage offloading](./scripts/step_3_storage_offloading/)
+    &rarr; [Step3 - Storage offloading](./scripts/step_3_storage_offload/)
 
 4. Generate figures with collected data
 
