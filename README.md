@@ -40,6 +40,10 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
     
     &rarr; [Step3 - Storage offloading](./scripts/step_3_storage_offloading/)
 
+4. Generate figures with collected data
+
+    &rarr; [Step4 - Generate figures](./fig_gen/)
+
 
 ## Estimated completion time
 - Setup: 1hr
