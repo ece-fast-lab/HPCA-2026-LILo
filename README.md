@@ -6,7 +6,7 @@ This is the respository that holds the artifacts of HPCA 2026 --  LILO: Harnessi
 **Hardware**
 - A server with an Intel Xeon Scalable Processor (>= 4th generation) equipped with at least one IAA (4 IAAs is preferred to reproduce performance).
 - Make sure `Hardware prefetch`, `LLC prefetch`, and `Adjacent Cache Prefetch` is turned on in BIOS.
-- Recommend to have at least 1.2TB stoarge space for storing all models' parameters. 
+- Recommend to have at least 720GB stoarge space for storing all models' parameters. 
 
 **Software**
 - Ubuntu 22.04 LTS
