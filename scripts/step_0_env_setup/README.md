@@ -17,8 +17,8 @@ Instead of running the full-scale model, we crop the models to fit into one sock
 
 | Model         | Method     | Cropped script | Download |
 |---------------|------------|----------------|------------------|
-|Llama3.1-405B  | 126 decoder layers &rarr; 21 decoder layers| [crop_llama.py](./crop_llama.py) | [hf_slim_llama](huggingface_link)
-|DeepSeek-R1    | 3 dense layers + 57 MoE layers &rarr; 1 dense layer + 19 MoE layers | [crop_ds.py](./crop_ds.py) | [hf_slim_ds](huggingface_link)
+|Llama3.1-405B  | 126 decoder layers &rarr; 21 decoder layers| [crop_llama.py](./crop_llama.py) | [hf_slim_llama](https://huggingface.co/SudoRose/Slim-Llama3.1-405B)
+|DeepSeek-R1    | 3 dense layers + 57 MoE layers &rarr; 1 dense layer + 19 MoE layers | [crop_ds.py](./crop_ds.py) | [hf_slim_ds](https://huggingface.co/SudoRose/Small-DS-R1)
 
 We pre-process the models and store them in the storage devices in experiment server.
 
