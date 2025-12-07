@@ -161,13 +161,12 @@ def get_storage_tput():
     log_dir = (script_dir / "../scripts/step_3_storage_offload/results").resolve()
     return compute_storage_tput_from_logs(log_dir, fallback_tput=3.7)
 
-
 def get_llama_latencies(
-    time,
+    time, 
     is_comp,
-    storage_tput,
-    mem_cap,
-    bs,
+    storage_tput, 
+    mem_cap, 
+    bs, 
     category
 ):
     LLAMA_SCALE = 6
@@ -201,12 +200,12 @@ def get_llama_latencies(
     storage_overhead = max(0, (memory_footprint-mem_cap)/storage_tput*Lout)
     return storage_overhead, time_full_scale
 
-def get_llama_tput(
-    time,
+def get_llama_tput( 
+    time, 
     is_comp,
-    storage_tput,
-    mem_cap,
-    bs,
+    storage_tput, 
+    mem_cap, 
+    bs, 
     category
 ):
     LLAMA_SCALE = 6
@@ -244,11 +243,11 @@ def get_llama_tput(
 # print(get_llama_tput(117.569, False, 3.7, 512, 128, 256, 1))
 
 def get_ds_latencies(
-    time,
+    time, 
     is_comp,
-    storage_tput,
-    mem_cap,
-    bs,
+    storage_tput, 
+    mem_cap, 
+    bs, 
     category
 ):
     DS_SCALE = 3
@@ -278,10 +277,10 @@ def get_ds_latencies(
         weight_footprint = COMP_FOOTPRINT
     else:
         weight_footprint = UNCOMP_FOOTPRINT
-
+        
     memory_footprint = weight_footprint + (2 * 2 * bs * (Lin+Lout) * d_c * n_layer \
                         + 2 * bs * (Lin + Lout) * d_hidden) / 1024 / 1024 / 1024
-
+    
     if bs == 1:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*8/256/0.54)
     elif bs == 4:
@@ -296,11 +295,11 @@ def get_ds_latencies(
     return storage_overhead, decomp_full_scale # throughput token/s
 
 
-def get_ds_tput(
-    time,
+def get_ds_tput( 
+    time, 
     is_comp,
-    storage_tput,
-    mem_cap,
+    storage_tput, 
+    mem_cap, 
     bs,
     category
 ):
@@ -331,10 +330,10 @@ def get_ds_tput(
         weight_footprint = COMP_FOOTPRINT
     else:
         weight_footprint = UNCOMP_FOOTPRINT
-
+        
     memory_footprint = weight_footprint + (2 * 2 * bs * (Lin+Lout) * d_c * n_layer \
                         + 2 * bs * (Lin + Lout) * d_hidden) / 1024 / 1024 / 1024
-
+    
     if bs == 1:
         storage_overhead = max(0, (memory_footprint - mem_cap)/storage_tput*Lout*8/256/0.54)
     elif bs == 4:
@@ -398,7 +397,7 @@ def get_subplot1_data(baseline_results, decmp_results, storage_tput):
     llama_decomp_cat = [sort_key(llama_decomp_key)[0] for llama_decomp_key in llama_decomp_keys]
     llama_decomp_values = [llama_decomp[k] for k in llama_decomp_keys]
     llama_decomp_tput = [get_llama_tput(llama_decomp_values[idx], True, storage_tput, mem_cap, llama_decomp_bs[idx],llama_decomp_cat[idx]) for idx in range(len(llama_decomp_values))]
-
+    
     assert(len(llama_base_tput) == len(llama_decomp_tput))
     llama_combined = [x for pair in zip(llama_base_tput, llama_decomp_tput) for x in pair]
     # print(llama_combined)
@@ -450,22 +449,21 @@ def get_subplot2_data(baseline_results, decmp_results, storage_tput):
     llama_decomp_values = [llama_decomp[k] for k in filtered_decomp_keys]
 
     llama_base_latencies = [
-        get_lla
-               ma_latencies(
-            llama_base[k],
-            False,
-            storage_tput,
-            mem_cap,
+        get_llama_latencies(
+            llama_base[k], 
+            False, 
+            storage_tput, 
+            mem_cap, 
             sort_key(k)[1],
             sort_key(k)[0]
         ) for k in filtered_base_keys
     ] # return (storage_overhead, time_full_scale)
     llama_decomp_latencies = [
         get_llama_latencies(
-            llama_decomp[k],
-            True,
-            storage_tput,
-            mem_cap,
+            llama_decomp[k], 
+            True, 
+            storage_tput, 
+            mem_cap, 
             sort_key(k)[1],
             sort_key(k)[0]
         ) for k in filtered_decomp_keys
@@ -496,20 +494,20 @@ def get_subplot2_data(baseline_results, decmp_results, storage_tput):
 
     ds_base_latencies = [
         get_ds_latencies(
-            ds_base[k],
-            False,
-            storage_tput,
-            mem_cap,
+            ds_base[k], 
+            False, 
+            storage_tput, 
+            mem_cap, 
             sort_key(k)[1],
             sort_key(k)[0]
         ) for k in filtered_base_keys
     ] # return (storage_overhead, time_full_scale)
     ds_decomp_latencies = [
         get_ds_latencies(
-            ds_decomp[k],
-            True,
-            storage_tput,
-            mem_cap,
+            ds_decomp[k], 
+            True, 
+            storage_tput, 
+            mem_cap, 
             sort_key(k)[1],
             sort_key(k)[0]
         ) for k in filtered_decomp_keys
@@ -520,7 +518,7 @@ def get_subplot2_data(baseline_results, decmp_results, storage_tput):
     ds_data['base_compute'] = [ds_base_latencies[idx][1] for idx in range(len(ds_base_latencies))]
     ds_data['base_storage'] = [ds_base_latencies[idx][0] for idx in range(len(ds_base_latencies))]
     return llama_data, ds_data
-
+    
 
 if __name__ == "__main__":
     base_dir = "../scripts/step_1_baseline/results/"
@@ -535,8 +533,8 @@ if __name__ == "__main__":
     llama_break, ds_break = get_subplot2_data(baseline_results, decmp_results, storage_tput)
     print(llama_break)
     print(ds_break)
-
-
+    
+    
     fig, axes = plt.subplots(2, 2, figsize=(20, 8))
 
     indices = np.arange(len(llama_base_tput))
